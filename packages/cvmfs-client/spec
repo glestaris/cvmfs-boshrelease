@@ -1,0 +1,4 @@
+---
+name: cvmfs-client
+files:
+  - cvmfs/**/*

@@ -1,0 +1,49 @@
+---
+name: cvmfs-client
+
+director_uuid: <%= `bosh target lite > /dev/null 2>&1 && bosh status --uuid` %>
+
+releases:
+  - name: cvmfs
+    version: latest
+
+jobs:
+  - name: cvmfs-client
+    templates:
+      - name: cvmfs-client
+        release: cvmfs
+    resource_pool: cvmfs
+    networks:
+      - name: cvmfs
+    instances: 1
+
+networks:
+  - name: cvmfs
+    subnets:
+      - range: 10.244.16.0/24
+        reserved: [10.244.16.1]
+        static: []
+        cloud_properties:
+          name: random
+
+resource_pools:
+  - name: cvmfs
+    network: cvmfs
+    stemcell:
+      name: bosh-warden-boshlite-ubuntu-trusty-go_agent
+      version: latest
+    cloud_properties:
+      name: random
+
+compilation:
+  workers: 3
+  network: cvmfs
+  cloud_properties:
+    name: random
+
+update:
+  canaries: 1
+  max_in_flight: 3
+  serial: false
+  canary_watch_time: 1000-240000
+  update_watch_time: 1000-240000

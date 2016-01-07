@@ -1,0 +1,3 @@
+[submodule "src/cvmfs"]
+	path = src/cvmfs
+	url = https://github.com/cvmfs/cvmfs
