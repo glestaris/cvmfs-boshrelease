@@ -1,4 +1,6 @@
 ---
 name: cvmfs-client
+dependencies:
+  - attr
 files:
   - cvmfs/**/*

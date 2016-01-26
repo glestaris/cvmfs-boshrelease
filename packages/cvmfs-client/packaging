@@ -1,3 +1,14 @@
-set -e
+#!/bin/bash
+set -eux
 
-ls -la cvmfs/ > ${BOSH_INSTALL_TARGET}/hello_world.txt
+# Preserve source code tree
+cp -r cvmfs ${BOSH_INSTALL_TARGET}/src
+
+# Compile
+cd cvmfs
+cmake \
+  -DCMAKE_INCLUDE_PATH=$(readlink -nf /var/vcap/packages/attr/include) \
+  -DCMAKE_LIBRARY_PATH=$(readlink -nf /var/vcap/packages/attr/lib) \
+  -DCMAKE_PREFIX_PATH=${BOSH_INSTALL_TARGET} \
+  .
+make
