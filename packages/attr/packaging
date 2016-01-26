@@ -1,0 +1,12 @@
+#!/bin/bash
+set -eux
+
+# Preserve source code tree
+tar -zx -f attr/attr-2.4.47.src.tgz
+
+# Compile
+cd attr-2.4.47/
+sed -i -e 's|/@pkg_name@|&-@pkg_version@|' include/builddefs.in
+INSTALL_USER=root  INSTALL_GROUP=root ./configure --prefix=${BOSH_INSTALL_TARGET} --disable-static
+make
+make install install-dev install-lib
