@@ -1,0 +1,4 @@
+---
+name: fuse
+files:
+  - fuse/fuse-2.9.5.src.tgz

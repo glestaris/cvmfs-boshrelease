@@ -1,0 +1,11 @@
+#!/bin/bash
+set -eux
+
+# Preserve source code tree
+tar -zx -f fuse/fuse-2.9.5.src.tgz
+
+# Compile
+cd fuse-2.9.5/
+INSTALL_USER=root  INSTALL_GROUP=root ./configure --prefix=${BOSH_INSTALL_TARGET}
+make
+make install
