@@ -1,4 +1,4 @@
 ---
 name: fuse
 files:
-  - fuse/fuse-2.9.5.src.tgz
+  - fuse/fuse-2.9.6.tar.gz
