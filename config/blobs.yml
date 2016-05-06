@@ -1,1 +1,9 @@
---- {}
+---
+attr/attr-2.4.47.src.tar.gz:
+  object_id: f23adbc5-83b6-47c4-8ed3-c00c4360d19c
+  sha: 5060f0062baee6439f41a433325b8b3671f8d2d8
+  size: 343692
+fuse/fuse-2.9.6.tar.gz:
+  object_id: e9682d39-1dfb-4b8b-bfd7-49eacc81c7ac
+  sha: f0d69ecd5345c4943820f43d9574250acf1a0722
+  size: 640070
