@@ -2,7 +2,7 @@
 set -eux
 
 # Preserve source code tree
-tar -zx -f attr/attr-2.4.47.src.tgz
+tar -zx -f attr/attr-2.4.47.src.tar.gz
 
 # Compile
 cd attr-2.4.47/
