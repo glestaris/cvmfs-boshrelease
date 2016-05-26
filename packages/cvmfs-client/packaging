@@ -2,13 +2,36 @@
 set -eux
 
 # Preserve source code tree
-cp -r cvmfs ${BOSH_INSTALL_TARGET}/src
+cp -r cvmfs $BOSH_INSTALL_TARGET/src
 
-# Compile
-cd cvmfs
+# Depedencies
+attrIncludePath=$(readlink -nf /var/vcap/packages/attr/include)
+attrLibPath=$(readlink -nf /var/vcap/packages/attr/lib)
+fuseIncludePath=$(readlink -nf /var/vcap/packages/fuse/include)
+fuseLibPath=$(readlink -nf /var/vcap/packages/fuse/lib)
+
+# Make build directory
+mkdir cvmfs/build
+cd cvmfs/build
+
+# Configure
 cmake \
-  -DCMAKE_INCLUDE_PATH=$(readlink -nf /var/vcap/packages/attr/include) \
-  -DCMAKE_LIBRARY_PATH=$(readlink -nf /var/vcap/packages/attr/lib) \
-  -DCMAKE_PREFIX_PATH=${BOSH_INSTALL_TARGET} \
-  .
-make
+  -DCMAKE_INSTALL_PREFIX=$BOSH_INSTALL_TARGET \
+  -DBUILD_CVMFS=ON \
+  -DBUILD_LIBCVMFS=ON \
+  -DBUILD_SERVER=OFF \
+  -DINSTALL_MOUNT_SCRIPTS=OFF \
+  -DINSTALL_PUBLIC_KEYS=OFF \
+  -DINSTALL_BASH_COMPLETION=OFF \
+  -DCMAKE_REQUIRED_INCLUDES=$attrIncludePath \
+  -DCMAKE_INCLUDE_PATH=$fuseIncludePath \
+  -DCMAKE_LIBRARY_PATH=$fuseLibPath \
+  ..
+
+# Compile!
+export LIBRARY_PATH=$attrLibPath":"$fuseLibPath
+export CPLUS_INCLUDE_PATH=$attrIncludePath":"$fuseIncludePath
+make -j4
+
+# Install
+make install
