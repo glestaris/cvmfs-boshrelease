@@ -1,9 +1,0 @@
-# Deploying a BOSH VM with CVMFS
-
-```
-bosh target lite
-bosh deployment ./manifests/bosh-lite.yml
-./scripts/create-release.sh --force
-bosh upload release
-bosh deploy
-```
