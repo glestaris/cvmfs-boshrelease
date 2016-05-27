@@ -1,0 +1,19 @@
+#!/bin/bash
+set -ex
+
+LOG_DIR=/var/vcap/sys/log/cvmfs-client
+JOB_DIR=/var/vcap/jobs/cvmfs-client
+
+mkdir -p $LOG_DIR
+mkdir -p <%= p("cvmfs.config.cache_base") %>
+mkdir -p <%= p("cvmfs.mount.mount_dir_path") %>
+
+export PATH=$PATH:/var/vcap/packages/cvmfs/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/var/vcap/packages/cvmfs/lib
+cvmfs2 -d -o uid=<%= p("cvmfs.mount.uid") %> \
+  -o gid=<%= p("cvmfs.mount.gid") %> \
+  -o config=$JOB_DIR/config/cvmfs.cfg \
+  <%= p("cvmfs.mount.repo_fqdn") %> \
+  <%= p("cvmfs.mount.mount_dir_path") %> \
+  1>>$LOG_DIR/cvmfs-client.stdout.log \
+  2>>$LOG_DIR/cvmfs-client.stderr.log

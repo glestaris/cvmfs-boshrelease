@@ -16,6 +16,15 @@ jobs:
     networks:
       - name: cvmfs-client
     instances: 1
+    properties:
+      cvmfs:
+        mount:
+          repo_fqdn: geant4.cern.ch
+          mount_dir_path: /test
+        config:
+          keys_dir: /var/vcap/packages/cvmfs/etc/cvmfs/keys/cern.ch
+          server_url: http://cvmfs-stratum-one.cern.ch/cvmfs/geant4.cern.ch
+          claim_ownership: yes
 
 networks:
   - name: cvmfs-client

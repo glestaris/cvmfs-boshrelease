@@ -1,0 +1,3 @@
+check system cvmfs-client
+  start program /var/vcap/jobs/cvmfs-client/bin/mount
+  stop program /var/vcap/jobs/cvmfs-client/bin/umount

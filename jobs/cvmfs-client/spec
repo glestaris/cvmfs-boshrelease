@@ -3,3 +3,45 @@ name: cvmfs-client
 
 packages:
   - cvmfs
+
+templates:
+  config.erb: config/cvmfs.cfg
+  mount.erb: bin/mount
+  umount.erb: bin/umount
+
+properties:
+  cvmfs.mount.repo_fqdn:
+    description: "Repository FQDN."
+
+  cvmfs.mount.mount_dir_path:
+    description: "Directory where the CVMFS repository should be mounted."
+    default: "/cvmfs"
+
+  cvmfs.mount.uid:
+    description: "UID of user that should own the mounted repository."
+    default: 0
+
+  cvmfs.mount.gid:
+    description: "GID of group that should own the mounted repository."
+    default: 0
+
+  cvmfs.config.cache_base:
+    description: "Location (directory) of the CernVM-FS cache."
+    default: "/var/lib/cvmfs-cache"
+
+  cvmfs.config.server_url:
+    description: "Semicolon-separated chain of Stratum~1 servers."
+
+  cvmfs.config.http_proxy:
+    description: "Chain of HTTP proxy groups used by CernVM-FS. Necessary. Set to DIRECT if you don’t use proxies. "
+    default: "DIRECT"
+
+  cvmfs.config.claim_ownership:
+    description: "If set to yes, allows CernVM-FS to claim ownership of files and directories."
+
+  cvmfs.config.reload_sockets:
+    description: "Directory of the sockets used by the CernVM-FS loader to trigger hotpatching/reloading."
+    default: "/var/lib/cvmfs-cache"
+
+  cvmfs.config.keys_dir:
+    description: "Directory containing *.pub files used as repository signing keys. If set, this parameter has precedence over CVMFS_PUBLIC_KEY. "

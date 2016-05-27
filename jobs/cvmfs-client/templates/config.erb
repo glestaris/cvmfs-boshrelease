@@ -1,0 +1,10 @@
+CVMFS_CACHE_BASE=<%= p("cvmfs.config.cache_base") %>
+CVMFS_SERVER_URL=<%= p("cvmfs.config.server_url") %>
+CVMFS_KEYS_DIR=<%= p("cvmfs.config.keys_dir") %>
+CVMFS_HTTP_PROXY=<%= p("cvmfs.config.http_proxy") %>
+<% if_p("cvmfs.config.claim_ownership") do |claim_ownership| %>
+CVMFS_CLAIM_OWNERSHIP=<%= claim_ownership %>
+<% end %>
+<% if_p("cvmfs.config.reload_sockets") do |reload_sockets| %>
+CVMFS_RELOAD_SOCKETS=<%= reload_sockets %>
+<% end %>
