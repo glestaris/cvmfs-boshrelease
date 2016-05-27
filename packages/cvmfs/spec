@@ -1,0 +1,7 @@
+---
+name: cvmfs
+dependencies:
+  - attr
+  - fuse
+files:
+  - cvmfs/cvmfs-2.3.0.src.tar.gz

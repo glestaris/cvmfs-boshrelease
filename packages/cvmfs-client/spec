@@ -1,7 +1,0 @@
----
-name: cvmfs-client
-dependencies:
-  - attr
-  - fuse
-files:
-  - cvmfs/**/*

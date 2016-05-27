@@ -1,4 +1,5 @@
 ---
 name: cvmfs-client
+
 packages:
-  - cvmfs-client
+  - cvmfs

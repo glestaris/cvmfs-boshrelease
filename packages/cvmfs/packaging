@@ -2,7 +2,7 @@
 set -eux
 
 # Preserve source code tree
-cp -r cvmfs $BOSH_INSTALL_TARGET/src
+tar -zx -f cvmfs/cvmfs-2.3.0.src.tar.gz
 
 # Depedencies
 attrIncludePath=$(readlink -nf /var/vcap/packages/attr/include)
@@ -11,8 +11,9 @@ fuseIncludePath=$(readlink -nf /var/vcap/packages/fuse/include)
 fuseLibPath=$(readlink -nf /var/vcap/packages/fuse/lib)
 
 # Make build directory
-mkdir cvmfs/build
-cd cvmfs/build
+cd cvmfs-cvmfs-2.3.0
+mkdir -p build
+cd build
 
 # Configure
 cmake \
@@ -20,8 +21,8 @@ cmake \
   -DBUILD_CVMFS=ON \
   -DBUILD_LIBCVMFS=ON \
   -DBUILD_SERVER=OFF \
-  -DINSTALL_MOUNT_SCRIPTS=OFF \
-  -DINSTALL_PUBLIC_KEYS=OFF \
+  -DINSTALL_MOUNT_SCRIPTS=ON \
+  -DINSTALL_PUBLIC_KEYS=ON \
   -DINSTALL_BASH_COMPLETION=OFF \
   -DCMAKE_REQUIRED_INCLUDES=$attrIncludePath \
   -DCMAKE_INCLUDE_PATH=$fuseIncludePath \
