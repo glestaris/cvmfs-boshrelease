@@ -2,4 +2,5 @@
 blobstore:
   provider: s3
   options:
-      bucket_name: cvmfs-client-boshrelease
+    bucket_name: cvmfs-client-boshrelease
+final_name: cvmfs-client

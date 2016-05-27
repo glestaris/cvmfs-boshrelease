@@ -1,0 +1,32 @@
+---
+packages:
+- name: attr
+  version: 4a37d94d181725ff36b4173b3d12cca97e883f11
+  fingerprint: 4a37d94d181725ff36b4173b3d12cca97e883f11
+  sha1: 4d04571af358f1a91495f03d755e77ce3a021c6e
+  dependencies: []
+- name: cvmfs
+  version: 7e984c27bc5813d7ec470f1f3c9a29a1abc8c843
+  fingerprint: 7e984c27bc5813d7ec470f1f3c9a29a1abc8c843
+  sha1: 6e73ca2c7e3726a41d4d9e44e137fcf0c24a662f
+  dependencies:
+  - attr
+  - fuse
+- name: fuse
+  version: a076a42476bd3886cdcce55f711de9de94fbd369
+  fingerprint: a076a42476bd3886cdcce55f711de9de94fbd369
+  sha1: 0546ba20c683fe74af1597de9e1713fd5fde1815
+  dependencies: []
+jobs:
+- name: cvmfs-client
+  version: d010ae9b60c1bd9abb8b8e6721c46b12c596c3aa
+  fingerprint: d010ae9b60c1bd9abb8b8e6721c46b12c596c3aa
+  sha1: 73842ef7c87d3c6a8d697a406d456ea037d9d273
+license:
+  version: c2de71833de42885de9b5fc113b43876c8316a8f
+  fingerprint: c2de71833de42885de9b5fc113b43876c8316a8f
+  sha1: e84fd6c82757d2f5e61f71c8d24b64f056738f97
+commit_hash: 733170d1
+uncommitted_changes: true
+name: cvmfs-client
+version: 2.3.0
